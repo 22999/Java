@@ -1,0 +1,21 @@
+新建 ctrl + n
+格式化 ctrl+shift+f
+代码格式错乱时，可以使用这个快捷键修复
+导入包 ctrl+shift+o
+注释 ctrl+/（添加和删除单行注释）,ctrl+shift+/（添加多行注释）,ctrl+shift+\（删除多行注释）
+代码上下移动 选中代码alt+上/下箭头
+查看源码 选中类名(F3或者Ctrl+鼠标点击)
+查找具体的类 ctrl + shift + t
+在项目里面根据类名查找类
+查找具体类的具体方法 ctrl + o
+给建议 ctrl+1,根据右边生成左边的数据类型,生成方法
+删除代码 ctrl + d
+抽取方法alt + shift + m
+将选中的代码抽取成一个方法
+改名alt + shift + r
+纵向选择alt + shift + a
+查找文字ctrl + h
+生成构造方法alt + shift + s 菜单显示之后再按c
+生成get和set方法alt + shift + s 菜单显示之后再按r
+关闭某个类ctrl + w
+查看提示alt + /
