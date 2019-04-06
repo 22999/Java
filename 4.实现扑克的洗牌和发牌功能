@@ -1,0 +1,90 @@
+package test;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeSet;
+
+/**
+ * 问题：实现扑克的洗牌和发牌功能
+ * 
+ * 分析:
+ *  初始化一副扑克的，创建集合对象将扑克放进去
+ *    使用Collections的shuffle方法对集合进行洗牌
+ *    实现发牌，发三家牌
+ */
+public class test {
+
+
+        public static void main(String[] args) {
+        // 将扑克数字和花色放到数组中
+        String[] num = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+        String[] color = { "红桃", "黑桃", "方片", "梅花" };
+
+        // 索引,用来排序
+        int index = 0;
+
+        //该list存放索引
+        ArrayList<Integer> list = new ArrayList<>();
+
+        //map的key存放索引，value存放扑克牌的点数
+        HashMap<Integer, String> map = new HashMap<>();
+
+        // 拼接扑克的花色和数字放到map中
+        for (String s1 : num) {
+            for (String s2 : color) {
+                // 将索引作为key，扑克点数作为value
+                map.put(index, s2 + s1);
+                // 向list中添加索引
+                list.add(index);
+                // 索引自增
+                index++;
+            }
+        }
+
+        // 将小王添加到双列集合中
+        map.put(index, "小王");
+        list.add(index++);
+        map.put(index, "大王");
+        list.add(index);
+
+        // 洗牌
+        Collections.shuffle(list);
+
+        // 发三家牌，TreeSet是会自动排序的
+        TreeSet<Integer> pony = new TreeSet<>();
+        TreeSet<Integer> robin = new TreeSet<>();
+        TreeSet<Integer> jack = new TreeSet<>();
+        TreeSet<Integer> dipai = new TreeSet<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            if (i >= list.size() - 3) {
+                // 留下三张底牌
+                dipai.add(list.get(i));
+            } else if (i % 3 == 0) {
+                pony.add(list.get(i));
+//                System.out.println(list.get(i));
+            } else if (i % 3 == 1) {
+                robin.add(list.get(i));
+            } else {
+                jack.add(list.get(i));
+            }
+        }
+        System.out.println(pony);
+        check(map, pony, "pony");
+        check(map, robin, "robin");
+        check(map, jack, "jack");
+        check(map, dipai, "dipai");
+    }
+
+    // 看牌
+    public static void check(HashMap<Integer, String> map, TreeSet<Integer> set, String name) {
+        System.out.print(name + ":");
+        //根据set中的索引作为map的key找到相应的扑克点数
+        for (Integer i : set) {
+            System.out.print(map.get(i) + " ");
+        }
+        System.out.println();
+    }
+
+}
