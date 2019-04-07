@@ -88,3 +88,34 @@ public class BufferFileCopy {
     }    
 
 }
+
+//3.jdk7的新写法
+package test;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+/**
+ * jdk7新写法，省去了close操作，系统会自动close
+ * @author Administrator
+ *
+ */
+public class IO7Style {
+
+    public static void main(String[] args) {
+        try (FileInputStream fis = new FileInputStream("java.txt");
+                FileOutputStream fos = new FileOutputStream("file\\good.txt");) {
+            int b;
+            while ((b = fis.read()) != -1) {
+                fos.write(b);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
