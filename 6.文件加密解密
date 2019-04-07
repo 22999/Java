@@ -1,0 +1,62 @@
+//文件加密
+package test;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class CodeImage {
+
+    public static void main(String[] args) {
+        //jdk7新写法
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("Buffer缓冲.png"));
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("new.png"))) {
+            int temp;
+            while ((temp = bis.read()) != -1) {
+                // 数据异或一个数字进行加密
+                bos.write(temp ^ 88);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
+
+
+//2.文件解密
+package test;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class DecodeImage {
+
+    public static void main(String[] args) {
+        //jdk7新写法
+        try (BufferedInputStream bis = new BufferedInputStream(new FileInputStream("new.png"));
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("decode.png"))) {
+            int temp;
+            while ((temp = bis.read()) != -1) {
+                // 数据异或一个数字进行解密
+                bos.write(temp ^ 88);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+}
